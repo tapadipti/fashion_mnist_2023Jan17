@@ -22,20 +22,20 @@ stages:
     params:
       params.yaml:
         train.batch_size: 128
-        train.dropout: 0.4
+        train.dropout: 0.45
         train.hidden_units: 64
         train.lr: 0.001
         train.num_epochs: 3
     outs:
     - path: dvclive/metrics.json
-      md5: fa0522416777fb3169a1357c712299a9
-      size: 53
+      md5: de412fa929acd11642e2ce40284ed5f4
+      size: 52
     - path: output/model.h5
-      md5: 5cc893f3018239c5048d5e4fc15ec28d
+      md5: d13518c5904f65ae45c8eff7a53732a4
       size: 3681752
     - path: output/train_logs.csv
-      md5: 54b667bb536c8a0355f71e88f4766b09
-      size: 141
+      md5: 731f36fea44cc5e15872a3608a700d37
+      size: 138
   evaluate:
     cmd: python src/evaluate.py
     deps:
