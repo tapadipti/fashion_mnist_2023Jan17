@@ -28,14 +28,14 @@ stages:
         train.num_epochs: 3
     outs:
     - path: dvclive/metrics.json
-      md5: de412fa929acd11642e2ce40284ed5f4
-      size: 52
+      md5: 9d8c37c65969e133a73083187d9d5422
+      size: 53
     - path: output/model.h5
-      md5: d13518c5904f65ae45c8eff7a53732a4
+      md5: 337724cd085519530d94522427cf46e3
       size: 3681752
     - path: output/train_logs.csv
-      md5: 731f36fea44cc5e15872a3608a700d37
-      size: 138
+      md5: f9e0dc9a11584226305c2941f0b248fd
+      size: 141
   evaluate:
     cmd: python src/evaluate.py
     deps:
@@ -43,15 +43,15 @@ stages:
       md5: 35353c71da0985eed8bb507bbc53bd91
       size: 54950285
     - path: output/model.h5
-      md5: d13518c5904f65ae45c8eff7a53732a4
+      md5: 337724cd085519530d94522427cf46e3
       size: 3681752
     - path: src/evaluate.py
       md5: 56af2219bbc7599971432616d8afdf13
       size: 1161
     outs:
     - path: output/metrics.json
-      md5: b5e843454e07af600496023465e237e6
-      size: 61
+      md5: b9689b30e442553f945a6a5cf188bc36
+      size: 60
     - path: output/predictions.json
-      md5: 9ef71f8b71abed9020734a3a5e750fe0
+      md5: ab73756663b3cc2942638c077095ae0d
       size: 310000
