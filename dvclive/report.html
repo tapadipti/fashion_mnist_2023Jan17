@@ -25,7 +25,7 @@
 <tr><th style="text-align: right;">  accuracy</th><th style="text-align: right;">  step</th></tr>
 </thead>
 <tbody>
-<tr><td style="text-align: right;">  0.877783</td><td style="text-align: right;">     2</td></tr>
+<tr><td style="text-align: right;">   0.87695</td><td style="text-align: right;">     2</td></tr>
 </tbody>
 </table>
             </div>
@@ -38,51 +38,107 @@
     "data": {
         "values": [
     {
-        "accuracy": "0.7885500192642212",
+        "accuracy": "0.7893333435058594",
         "rev": "workspace",
         "step": "0"
     },
     {
-        "accuracy": "0.8618000149726868",
+        "accuracy": "0.8614333271980286",
         "rev": "workspace",
         "step": "1"
     },
     {
-        "accuracy": "0.8777833580970764",
+        "accuracy": "0.8769500255584717",
         "rev": "workspace",
         "step": "2"
     }
 ]
     },
-    "title": "",
+    "title": "accuracy",
     "width": 300,
     "height": 300,
-    "mark": {
-        "type": "line",
-        "point": true,
-        "tooltip": {
-            "content": "data"
-        }
-    },
-    "encoding": {
-        "x": {
-            "field": "step",
-            "type": "quantitative",
-            "title": "step"
-        },
-        "y": {
-            "field": "accuracy",
-            "type": "quantitative",
-            "title": "accuracy",
-            "scale": {
-                "zero": false
+    "params": [
+        {
+            "name": "smooth",
+            "value": 0.001,
+            "bind": {
+                "input": "range",
+                "min": 0.001,
+                "max": 1,
+                "step": 0.001
             }
-        },
-        "color": {
-            "field": "rev",
-            "type": "nominal"
         }
-    }
+    ],
+    "layer": [
+        {
+            "mark": "line",
+            "encoding": {
+                "x": {
+                    "field": "step",
+                    "type": "quantitative",
+                    "title": "step"
+                },
+                "y": {
+                    "field": "accuracy",
+                    "type": "quantitative",
+                    "title": "accuracy",
+                    "scale": {
+                        "zero": false
+                    }
+                },
+                "color": {
+                    "field": "rev",
+                    "type": "nominal",
+                    "legend": {
+                        "orient": "top",
+                        "direction": "vertical"
+                    }
+                }
+            },
+            "transform": [
+                {
+                    "loess": "accuracy",
+                    "on": "step",
+                    "groupby": [
+                        "rev",
+                        "filename",
+                        "field",
+                        "filename::field"
+                    ],
+                    "bandwidth": {
+                        "signal": "smooth"
+                    }
+                }
+            ]
+        },
+        {
+            "mark": {
+                "type": "point",
+                "tooltip": {
+                    "content": "data"
+                }
+            },
+            "encoding": {
+                "x": {
+                    "field": "step",
+                    "type": "quantitative",
+                    "title": "step"
+                },
+                "y": {
+                    "field": "accuracy",
+                    "type": "quantitative",
+                    "title": "accuracy",
+                    "scale": {
+                        "zero": false
+                    }
+                },
+                "color": {
+                    "field": "rev",
+                    "type": "nominal"
+                }
+            }
+        }
+    ]
 }
 ;
             vegaEmbed('#static_accuracy', spec);
